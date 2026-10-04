@@ -1,6 +1,6 @@
 FROM openresty/openresty:1.25.3.2-alpine
 
-RUN apk add --no-cache perl \
+RUN apk add --no-cache perl curl \
  && opm get ledgetech/lua-resty-http cdbattags/lua-resty-jwt
 
 COPY nginx.conf             /usr/local/openresty/nginx/conf/nginx.conf
