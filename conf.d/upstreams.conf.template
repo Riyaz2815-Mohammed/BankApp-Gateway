@@ -1,5 +1,6 @@
 upstream spring_backend {
     server ${SPRING_BACKEND_HOST};
+    server ${SPRING_BACKEND_HOST_2};
     keepalive 32;
 }
 
