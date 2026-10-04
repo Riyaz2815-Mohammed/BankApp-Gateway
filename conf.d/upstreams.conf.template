@@ -1,14 +1,14 @@
 upstream spring_backend {
-    server spring-boot:8080;
+    server ${SPRING_BACKEND_HOST};
     keepalive 32;
 }
 
 upstream nextjs_frontend {
-    server nextjs:3000;
+    server ${NEXTJS_FRONTEND_HOST};
     keepalive 16;
 }
 
 upstream keycloak {
-    server keycloak:8080;
+    server ${KEYCLOAK_HOST};
     keepalive 16;
 }

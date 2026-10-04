@@ -1,11 +1,15 @@
 FROM openresty/openresty:1.25.3.2-alpine
 
-COPY nginx.conf  /usr/local/openresty/nginx/conf/nginx.conf
-COPY conf.d/     /etc/nginx/conf.d/
-COPY lua/        /etc/nginx/lua/
+RUN opm get ledgetech/lua-resty-http cdbattags/lua-resty-jwt
 
-RUN mkdir -p /var/log/nginx
+COPY nginx.conf             /usr/local/openresty/nginx/conf/nginx.conf
+COPY conf.d/                /etc/nginx/conf.d/
+COPY lua/                   /etc/nginx/lua/
+COPY docker-entrypoint.sh   /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 80
+RUN mkdir -p /var/log/nginx /etc/nginx/certs \
+ && chmod +x /usr/local/bin/docker-entrypoint.sh
 
-CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
+EXPOSE 80 443
+
+ENTRYPOINT ["docker-entrypoint.sh"]

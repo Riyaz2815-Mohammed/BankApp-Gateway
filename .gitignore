@@ -1,3 +1,5 @@
 logs/
 *.log
 .env
+certs/*.crt
+certs/*.key
